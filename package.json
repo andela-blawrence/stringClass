@@ -1,0 +1,23 @@
+{
+  "name": "stringClass",
+  "version": "1.0.0",
+  "description": "Add more methods to the string Class to support extra functionality",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/andela-blawrence/stringClass.git"
+  },
+  "author": "",
+  "license": "BSD-2-Clause",
+  "bugs": {
+    "url": "https://github.com/andela-blawrence/stringClass/issues"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "coveralls": "~2.11.4",
+    "istanbul": "~0.4.0"
+  }
+}
