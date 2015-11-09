@@ -1,9 +1,31 @@
 'use strict';
 
+/*
+* Author : Lawrence Bolutife
+* Description : Spec file for the newly added methods to the String Class. Test to
+* 							ensure that all method behave as expected, return the right values and data type.
+*/
+
 describe('Base case for String Class', function () {
   it('String should be an existing class (Constuctor)', function () {
-      expect(typeof String).toEqual('function');
-      // test if String class inherits from Object();
+    expect(typeof String).toEqual('function');
+    expect(String.prototype).toBeDefined();
+  });
+});
+
+describe('String Class', function () {
+  it('All newly added methods of the should return the right datatypes', function () {
+    expect(typeof 'iodine'.hasVowels()).toEqual('boolean');
+    expect(typeof 'frkspwb'.hasVowels()).toEqual('boolean');
+    expect(typeof 'javascript Is seXy'.toUpper()).toEqual('string');
+    expect(typeof 'JAVASCRIPT IS SEXY'.toLower()).toEqual('string');
+    expect(typeof 'factory Functions'.ucFirst()).toEqual('string');
+    expect(typeof 'is javascript really sexy?'.isQuestion()).toEqual('boolean');
+    expect(typeof 'is javascript really sexy'.isQuestion()).toEqual('boolean');
+    expect(typeof 'Strive hard, and success shall be yours!'.words()).toEqual('object');
+    expect(typeof 'Strive hard, and success shall be yours!'.wordCount()).toBe('number');
+    expect(typeof "305*^^#@!#)67887.7859586587".toCurrency()).toBe('string');
+    expect(typeof "23,789.00".fromCurrency()).toBe('number');
   });
 });
 
@@ -48,6 +70,7 @@ describe('isQuestion', function () {
 describe('words', function () {
   it('should return a list of the words in the calling Object(string), as an Array', function () {
     expect('Strive hard, and success shall be yours!'.words()).toEqual(['Strive', 'hard', 'and', 'success', 'shall', 'be', 'yours']);
+    expect("We ain't dumb brother!".words()).toEqual(['We', "ain't", 'dumb', 'brother']);
   });
 });
 
@@ -59,14 +82,17 @@ describe('wordCount', function () {
 
 describe('toCurrency', function () {
   it('should return a currency representation of the String', function () {
-    expect("11111.11".fromCurrency()).toBe("11,111.11");
-    expect("30567887.7859".fromCurrency()).toBe("30,567,887.78");
+    expect("11111.11".toCurrency()).toBe("11,111.11");
+    expect("30567887.7859".toCurrency()).toBe("30,567,887.79");
+    expect("305*^^#@!#)67887.7859586587".toCurrency()).toBe("30,567,887.79");
+    expect("34578".toCurrency()).toBe("34,578.00");
   });
 });
 
 describe('fromCurrency', function () {
   it('should return a number representation of the Currency String', function () {
-    expect("11,111.11".fromCurrency()).toBe("11111.11");
-    expect("30,567,887.7859".fromCurrency()).toBe("30567887.78");
+    expect("11,111.11".fromCurrency()).toBe(11111.11);
+    expect("30,567,887.7859".fromCurrency()).toBe(30567887.78);
+    expect("23,789.00".fromCurrency()).toBe(23789.00);
   });
 });
