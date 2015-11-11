@@ -14,7 +14,13 @@ describe('Base case for String Class', function () {
 });
 
 describe('String Class', function () {
-  it('All newly added methods of the should return the right datatypes', function () {
+  var words, typeOfArr;
+  beforeEach (function () {
+    words = 'Strive hard, and success shall be yours!'.words();
+    typeOfArr = Object.prototype.toString.call(words);
+  });
+
+  it('All newly added methods of the String class should return the right datatypes', function () {
     expect(typeof 'iodine'.hasVowels()).toEqual('boolean');
     expect(typeof 'frkspwb'.hasVowels()).toEqual('boolean');
     expect(typeof 'javascript Is seXy'.toUpper()).toEqual('string');
@@ -22,7 +28,7 @@ describe('String Class', function () {
     expect(typeof 'factory Functions'.ucFirst()).toEqual('string');
     expect(typeof 'is javascript really sexy?'.isQuestion()).toEqual('boolean');
     expect(typeof 'is javascript really sexy'.isQuestion()).toEqual('boolean');
-    expect(typeof 'Strive hard, and success shall be yours!'.words()).toEqual('object');
+    expect(typeOfArr).toEqual("[object Array]");
     expect(typeof 'Strive hard, and success shall be yours!'.wordCount()).toBe('number');
     expect(typeof "305*^^#@!#)67887.7859586587".toCurrency()).toBe('string');
     expect(typeof "23,789.00".fromCurrency()).toBe('number');
@@ -64,6 +70,9 @@ describe('isQuestion', function () {
   });
   it('should return false if calling Object(string) is not a question (does not end with question mark)', function () {
     expect("is javascript really sexy".isQuestion()).toEqual(false);
+  });
+  it('should return false if the only character is a question mark (?)', function () {
+    expect("?".isQuestion()).toEqual(false);
   });
 });
 

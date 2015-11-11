@@ -17,7 +17,7 @@ String.prototype.hasVowels = function hasVowels () {
   // copying an instance of this(object inheriting this method).
   var _this = this,
       regex = /[aeiou]/gmi;
-  if (typeof _this === 'string' && _this) {
+  if (_this && typeof _this === 'string') {
     return regex.test(_this);
   } else  {
     throw new TypeError('Invalid string');
@@ -34,7 +34,7 @@ String.prototype.toUpper = function () {
   function replaceLower ( char ) {
     return String.fromCharCode(char.charCodeAt() - 32);
   }
-  if (typeof _this && _this) {
+  if (_this && typeof _this === 'string') {
     return _this.replace(regex, replaceLower);
   } else {
     throw new TypeError('Invalid string');
@@ -51,7 +51,7 @@ String.prototype.toLower = function () {
   function replaceUpper ( char ) {
     return String.fromCharCode(char.charCodeAt() + 32);
   }
-  if (typeof _this === 'string' && _this) {
+  if (_this && typeof _this === 'string') {
     return _this.replace(regex, replaceUpper);
   } else {
     throw new TypeError('Invalid string');
@@ -64,7 +64,7 @@ String.prototype.toLower = function () {
  */
 String.prototype.ucFirst = function () {
   var _this = this;
-  if (typeof _this === 'string' && _this) {
+  if (_this && typeof _this === 'string') {
     return _this[0].toUpper() + _this.substring(1).toLower();
   } else {
     throw new TypeError('Invalid string');
@@ -77,8 +77,8 @@ String.prototype.ucFirst = function () {
  */
 String.prototype.isQuestion = function isQuestion () {
   var _this = this,
-      regex = /\?$/g;
-  if (typeof _this === 'string' && _this) {
+      regex = /.{1,}\?$/g;
+  if (_this && typeof _this === 'string') {
     return regex.test(_this);
   } else {
     throw new TypeError ('Invalid string');
@@ -93,12 +93,12 @@ String.prototype.words = function () {
   var _this = this,
       prepRegex = /[^A-Za-z-']/gm,
       splitRegex = /\s/;
-  function sanctify ( elem ) {
+  function isTruthy ( elem ) {
     return Boolean(elem) === true;
   }
   if (_this && typeof _this === 'string') {
     _this = _this.replace(prepRegex, " ").split(splitRegex);
-    return _this.filter(sanctify);
+    return _this.filter(isTruthy);
   } else {
     throw new TypeError ('Invalid String');
   }
@@ -142,7 +142,7 @@ String.prototype.toCurrency = function toCurrency () {
  */
 String.prototype.fromCurrency = function () {
   var _this = this,
-      regexReplace = /[,]/g,
+      regexReplace = /\,/g,
       regexTrim = /[\d]+\.?[\d]{2}?/g,
       regexTest = /\./g;
   if (!regexTest.test(_this)) {
